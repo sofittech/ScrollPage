@@ -1,6 +1,6 @@
 //
-//  SwipeableTableViewController.swift
-//  ScrollPageDemo
+//  ScrollPageViewController.swift
+//  ScrollPage
 //
 //  Created by 洪德晟 on 2017/8/2.
 //  Copyright © 2017年 洪德晟. All rights reserved.
