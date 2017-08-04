@@ -71,22 +71,22 @@ open class ScrollPageViewController: UIViewController {
     /** To set the background color of the tab bar.
      Default color is black color. You can change the color as per your need.
      */
-    open let defaultSegmentBarBgColor = UIColor.black
+    open var defaultSegmentBarBgColor = UIColor.black
     
     /** To set the background color of the selection bar.
      Default color is red color. You can change the color as per your need.
      */
-    open let defaultSelectionBarBgColor = UIColor.red
+    open var defaultSelectionBarBgColor = UIColor.red
     
     /** To set the background color of the selection bar.
      Default color is orange color. You can change the color as per your need.
      */
-    open let defaultSelectedButtonForegroundColor = UIColor.orange
+    open var defaultSelectedButtonForegroundColor = UIColor.orange
     
     /** To set the background color of the selection bar.
      Default color is red color. You can change the color as per your need.
      */
-    open let defaultUnSelectedButtonForegroundColor = UIColor.gray
+    open var defaultUnSelectedButtonForegroundColor = UIColor.gray
     
     ///Dictionary to set button attributes. User can change the titleFont, titleFontColor, Normal Image, Selected Image etc.
     /**
