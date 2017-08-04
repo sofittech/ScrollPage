@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		563B1DFB1F3417A20041F09F /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 563B1DFA1F3417A20041F09F /* README.md */; };
 		56F918871F331E0F005DD4E4 /* ScrollPage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56F9187D1F331E0F005DD4E4 /* ScrollPage.framework */; };
 		56F9188C1F331E0F005DD4E4 /* ScrollPageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F9188B1F331E0F005DD4E4 /* ScrollPageTests.swift */; };
 		56F9188E1F331E0F005DD4E4 /* ScrollPage.h in Headers */ = {isa = PBXBuildFile; fileRef = 56F918801F331E0F005DD4E4 /* ScrollPage.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -24,6 +25,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		563B1DFA1F3417A20041F09F /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		56F9187D1F331E0F005DD4E4 /* ScrollPage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ScrollPage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		56F918801F331E0F005DD4E4 /* ScrollPage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScrollPage.h; sourceTree = "<group>"; };
 		56F918811F331E0F005DD4E4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -55,6 +57,7 @@
 		56F918731F331E0F005DD4E4 = {
 			isa = PBXGroup;
 			children = (
+				563B1DFA1F3417A20041F09F /* README.md */,
 				56F9187F1F331E0F005DD4E4 /* ScrollPage */,
 				56F9188A1F331E0F005DD4E4 /* ScrollPageTests */,
 				56F9187E1F331E0F005DD4E4 /* Products */,
@@ -202,6 +205,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				563B1DFB1F3417A20041F09F /* README.md in Sources */,
 				56F918981F331E30005DD4E4 /* ScrollPageViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -412,6 +416,7 @@
 				56F918931F331E0F005DD4E4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		56F918941F331E0F005DD4E4 /* Build configuration list for PBXNativeTarget "ScrollPageTests" */ = {
 			isa = XCConfigurationList;
@@ -420,6 +425,7 @@
 				56F918961F331E0F005DD4E4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
