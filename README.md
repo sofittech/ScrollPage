@@ -13,4 +13,4 @@ ScrollPage is available through [CocoaPods](http://cocoapods.org). !! Swift only
 
 To install add the following line to your Podfile:
 
-pod 'ScrollPage'
+    pod 'ScrollPage'
