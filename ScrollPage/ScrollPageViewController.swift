@@ -144,6 +144,8 @@ open class ScrollPageViewController: UIViewController {
     fileprivate let contentSizeOffset: CGFloat = 10.0
     fileprivate var pageScrollView: UIScrollView!
     
+    fileprivate var currentOrientationIsPortrait : Bool = true
+    
     private func setUpScrollView() {
         
         pageScrollView = UIScrollView()
@@ -374,6 +376,42 @@ open class ScrollPageViewController: UIViewController {
         UIView.animate(withDuration: 0.05) { [unowned self] in
             self.selectionBar.frame = CGRect(x: xCoor-xFromCenter/kSelectionBarSwipeConstant, y: self.selectionBar.frame.origin.y, width: self.buttonsFrameArray[self.currentPageIndex].size.width, height: self.selectionBar.frame.size.height)
         }
+    }
+    
+    // MARK: - Orientation Change
+    
+    override open func viewDidLayoutSubviews() {
+        
+        guard let titleBarDataSource = titleBarDataSource else { return }
+        pageScrollView.frame = CGRect(x: 0, y: segementBarHeight, width: self.view.frame.width, height: self.view.frame.height)
+        pageScrollView.contentSize = CGSize(width: self.view.frame.width * CGFloat(titleBarDataSource.count), height: self.view.frame.height)
+        
+        let oldCurrentOrientationIsPortrait : Bool = currentOrientationIsPortrait
+        
+        if UIDevice.current.orientation != UIDeviceOrientation.unknown {
+            currentOrientationIsPortrait = UIDevice.current.orientation.isPortrait || UIDevice.current.orientation.isFlat
+        }
+        
+        segmentBarView.frame = CGRect(x: 0.0, y: 0.0, width: self.view.frame.width, height: segementBarHeight)
+        
+        if (oldCurrentOrientationIsPortrait && UIDevice.current.orientation.isLandscape) || (!oldCurrentOrientationIsPortrait && (UIDevice.current.orientation.isPortrait || UIDevice.current.orientation.isFlat)) {
+            
+            for i in 0 ..< titleBarDataSource.count {
+                if i == titleBarDataSource.count-1 {
+                    segmentBarView.contentSize = CGSize(width:buttonsFrameArray[i].origin.x + buttonsFrameArray[i].size.width + contentSizeOffset, height: segementBarHeight)
+                }
+            }
+            
+            for view in pageScrollView.subviews where view.frame.width == pageScrollView.frame.width {
+                view.frame = CGRect(x: self.view.frame.width * CGFloat(view.tag), y: 0, width: pageScrollView.frame.width, height: pageScrollView.frame.height)
+                print(view)
+            }
+            
+            let xOffset : CGFloat = CGFloat(self.currentPageIndex) * pageScrollView.frame.width
+            pageScrollView.setContentOffset(CGPoint(x: xOffset, y: pageScrollView.contentOffset.y), animated: false)
+        }
+        
+        self.view.layoutIfNeeded()
     }
 
 }
