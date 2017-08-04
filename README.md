@@ -8,7 +8,8 @@ ScrollPage is a custom control which is mixture of UIScrollView contains Contain
 ## Demo: 
 (Without Customization)
 
-![demo](http://i.imgur.com/fOsNdck.gif)
+![demo](https://github.com/dan12411/ScrollPage/blob/master/ScrollPageDemo(Portrait).gif)
+![demo](https://github.com/dan12411/ScrollPage/blob/master/ScrollPageDemo(Landscape).gif)
 
 
 ## Installation
