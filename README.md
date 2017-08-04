@@ -5,6 +5,12 @@
 
 ScrollPage is a custom control which is mixture of UIScrollView contains Container Views and Scrollable Tab Bar.
 
+## Demo: 
+(Without Customization)
+
+![demo](http://i.imgur.com/fOsNdck.gif)
+
+
 ## Installation
 
 **CocoaPods**
