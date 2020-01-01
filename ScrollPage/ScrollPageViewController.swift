@@ -187,13 +187,13 @@ open class ScrollPageViewController: UIViewController {
                 }
             }
             for i in 0 ..< titleBarDataSource.count {
-                self.addChildViewController(viewControllers[i])
+                self.addChild(viewControllers[i])
                 self.pageScrollView.addSubview(viewControllers[i].view)
 
                 let pageViewSize = CGSize(width: self.view.frame.width, height: self.view.frame.height-segementBarHeight)
                 viewControllers[i].view.sizeThatFits(pageViewSize)
                 viewControllers[i].view.frame.origin = CGPoint(x: UIScreen.main.bounds.width * CGFloat(i), y: 0)
-                viewControllers[i].didMove(toParentViewController: self)
+                viewControllers[i].didMove(toParent: self)
             }
         }
     }
@@ -242,7 +242,7 @@ open class ScrollPageViewController: UIViewController {
                 
                 let segmentButton = UIButton(frame: CGRect(x: previousButtonX + previousButtonW + buttonPadding, y: 0.0, width: getWidthForText(buttonList[i]) + buttonPadding, height: segementBarHeight))
                 buttonsFrameArray.append(segmentButton.frame)
-                segmentButton.setTitle(buttonList[i], for: UIControlState())
+                segmentButton.setTitle(buttonList[i], for: UIControl.State())
                 segmentButton.tag = i
                 segmentButton.addTarget(self, action: #selector(ScrollPageViewController.didSegmentButtonTap(_:)), for: .touchUpInside)
                 
@@ -252,11 +252,11 @@ open class ScrollPageViewController: UIViewController {
                     }
                     
                     if let bgImage = attributes[SMBackgroundImageAttribute] as? UIImage {
-                        segmentButton.setBackgroundImage(bgImage, for: UIControlState())
+                        segmentButton.setBackgroundImage(bgImage, for: UIControl.State())
                     }
                     
                     if let normalImages = attributes[SMButtonNormalImagesAttribute] as? [String] {
-                        segmentButton.setImage(UIImage(named: normalImages[i]), for: UIControlState())
+                        segmentButton.setImage(UIImage(named: normalImages[i]), for: UIControl.State())
                     }
                     
                     if let highlightedImages = attributes[SMButtonHighlightedImagesAttribute] as? [String] {
@@ -265,7 +265,7 @@ open class ScrollPageViewController: UIViewController {
                     
                     if let hideTitle = attributes[SMButtonHideTitleAttribute] as? Bool, hideTitle == true{
                         segmentButton.titleLabel?.isHidden = true
-                        segmentButton.setTitle("", for: UIControlState())
+                        segmentButton.setTitle("", for: UIControl.State())
                     }
                     else{
                         segmentButton.titleLabel?.isHidden = false
@@ -276,13 +276,13 @@ open class ScrollPageViewController: UIViewController {
                     }
                     
                     if let foregroundColor = attributes[SMForegroundColorAttribute] as? UIColor, currentPageIndex == i{
-                        segmentButton.setTitleColor(foregroundColor, for: UIControlState())
+                        segmentButton.setTitleColor(foregroundColor, for: UIControl.State())
                     }
                     else if let unSelectedForegroundColor = attributes[SMUnselectedColorAttribute] as? UIColor, currentPageIndex != i{
-                        segmentButton.setTitleColor(unSelectedForegroundColor, for: UIControlState())
+                        segmentButton.setTitleColor(unSelectedForegroundColor, for: UIControl.State())
                     }
                     else {
-                        segmentButton.setTitleColor(defaultUnSelectedButtonForegroundColor, for: UIControlState())
+                        segmentButton.setTitleColor(defaultUnSelectedButtonForegroundColor, for: UIControl.State())
                     }
                     
                     if let alpha = attributes[SMAlphaAttribute] as? CGFloat {
@@ -290,7 +290,7 @@ open class ScrollPageViewController: UIViewController {
                     }
                 }
                 else {
-                    segmentButton.setTitleColor(currentPageIndex == i ? defaultSelectedButtonForegroundColor : defaultUnSelectedButtonForegroundColor , for: UIControlState())
+                    segmentButton.setTitleColor(currentPageIndex == i ? defaultSelectedButtonForegroundColor : defaultUnSelectedButtonForegroundColor , for: UIControl.State())
                 }
                 
                 segmentBarView.addSubview(segmentButton)
@@ -338,7 +338,7 @@ open class ScrollPageViewController: UIViewController {
     }
     
     fileprivate func getWidthForText(_ text: String) -> CGFloat {
-        return buttonWidth ?? ceil((text as NSString).size(attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 17.0)]).width)
+        return buttonWidth ?? ceil((text as NSString).size(withAttributes: convertToOptionalNSAttributedStringKeyDictionary([convertFromNSAttributedStringKey(NSAttributedString.Key.font): UIFont.systemFont(ofSize: 17.0)])).width)
     }
     
     fileprivate func updateButtonColorOnSelection() {
@@ -348,8 +348,8 @@ open class ScrollPageViewController: UIViewController {
                 indicatorBtns.append(button as! UIButton)
             }
         }
-        indicatorBtns[self.lastPageIndex].setTitleColor(UIColor.lightGray, for: UIControlState())
-        indicatorBtns[self.currentPageIndex].setTitleColor(UIColor.orange, for: UIControlState())
+        indicatorBtns[self.lastPageIndex].setTitleColor(UIColor.lightGray, for: UIControl.State())
+        indicatorBtns[self.currentPageIndex].setTitleColor(UIColor.orange, for: UIControl.State())
     }
     
     fileprivate func viewControllerAtIndex(_ index: Int) -> UIViewController? {
@@ -363,7 +363,7 @@ open class ScrollPageViewController: UIViewController {
     }
     
     //MARK : Segment Button Action
-    func didSegmentButtonTap(_ sender: UIButton) {
+    @objc func didSegmentButtonTap(_ sender: UIButton) {
         currentPageIndex = sender.tag
         
         let offset = UIScreen.main.bounds.width * CGFloat(currentPageIndex)
@@ -437,4 +437,15 @@ extension ScrollPageViewController: UIScrollViewDelegate {
         }
     }
     
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToOptionalNSAttributedStringKeyDictionary(_ input: [String: Any]?) -> [NSAttributedString.Key: Any]? {
+	guard let input = input else { return nil }
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (NSAttributedString.Key(rawValue: key), value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromNSAttributedStringKey(_ input: NSAttributedString.Key) -> String {
+	return input.rawValue
 }
