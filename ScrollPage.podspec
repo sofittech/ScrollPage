@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "ScrollPage"
-  s.version      = "1.1.0"
+  s.version      = "1.1.1"
   s.summary      = "ScrollPage is a custom control which is mixture of UIScrollView contains Container Views and Scrollable Tab Bar."
   s.description  = "ScrollPage is a custom control which is mixture of UIScrollView contains Container Views and Scrollable Tab Bar. Different from SMSwipeableTabView which used PageViewController. Use UIScrollView to get more flexibility."
 
